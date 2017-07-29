@@ -5,7 +5,17 @@
     <title>Chat App</title>
 </head>
 <body>
+    <div class="wrapper">
 
+        <ul id="messages">
+            <li v-for="message in messages">{{ message }}</li>
+        </ul>
+
+        <form v-on:submit="send">
+            <input type="text" v-model="message">
+            <button>Send</button>
+        </form>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
@@ -15,6 +25,27 @@
 
         new Vue({
                 el: ".wrapper",
+
+                data:{
+                    message:"",
+                    messages:[]
+                },
+
+                mounted: function(){
+                    socket.on("chat.message" , function( message ){
+                        console.log( message ) ;
+                        this.messages.push( message );
+                    }.bind( this ));
+                },
+
+                methods:{
+                    send: function( e ){
+                        console.log(" form submitted ") ;
+                        socket.emit("chat.message" , this.message ) ;
+
+                        e.preventDefault();
+                    }
+                }
             });
 
     </script>
