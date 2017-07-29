@@ -1,12 +1,12 @@
 {
   "name": "socket",
   "version": "1.0.0",
-  "description": "",
+  "description": "Small Chat App Built on top of Websockets Using Nodejs and Socket.io",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
+  "keywords": ["websockets" ,"realtime","node","socket.io","vue.js"],
   "author": "Ahmed Ali <dev.ahmed.abbas@gmail.com>",
   "license": "ISC",
   "dependencies": {
